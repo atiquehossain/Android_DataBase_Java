@@ -24,6 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String productAmount = "productAmount";
     public static final String productCost = "Cost";
 
+    public static final String groupBy = " GROUP BY  ";
+    public static final String orderBy = " ORDER BY  ";
+    public static final String preClause = " * ";
+    public static final String whereClause = " ";
+    public static final String mainClause = " " ;
+
 
     private final String CREATE_USER_INFO_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
             id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

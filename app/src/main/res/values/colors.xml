@@ -10,12 +10,60 @@
     <color name="colorPrimary">#0097A7</color>
     <color name="colorPrimaryDark">#00838F</color>
     <color name="colorAccent">#26C6DA</color>
-    <color name="md_cyan_50">#E0F7FA</color>
     <color name="md_black_1000">#000000</color>
     <color name="md_grey_700">#616161</color>
-    <color name="md_cyan_900">#006064</color>
     <color name="md_white_1000">#ffffff</color>
     <color name="md_grey_800">#424242</color>
+    <color name="colorRed">#f44336</color>
+    <color name="transparent">#00000000</color>
+
+    <!--reds-->
+    <color name="md_red_50">#FFEBEE</color>
+    <color name="md_red_100">#FFCDD2</color>
+    <color name="md_red_200">#EF9A9A</color>
+    <color name="md_red_300">#E57373</color>
+    <color name="md_red_400">#EF5350</color>
+    <color name="md_red_500">#F44336</color>
+    <color name="md_red_600">#E53935</color>
+    <color name="md_red_700">#D32F2F</color>
+    <color name="md_red_800">#C62828</color>
+    <color name="md_red_900">#B71C1C</color>
+    <color name="md_red_A100">#FF8A80</color>
+    <color name="md_red_A200">#FF5252</color>
+    <color name="md_red_A400">#FF1744</color>
+    <color name="md_red_A700">#D50000</color>
+
+    <!--blue-->
+    <color name="md_blue_50">#E3F2FD</color>
+    <color name="md_blue_100">#BBDEFB</color>
+    <color name="md_blue_200">#90CAF9</color>
+    <color name="md_blue_300">#64B5F6</color>
+    <color name="md_blue_400">#42A5F5</color>
+    <color name="md_blue_500">#2196F3</color>
+    <color name="md_blue_600">#1E88E5</color>
+    <color name="md_blue_700">#1976D2</color>
+    <color name="md_blue_800">#1565C0</color>
+    <color name="md_blue_900">#0D47A1</color>
+    <color name="md_blue_A100">#82B1FF</color>
+    <color name="md_blue_A200">#448AFF</color>
+    <color name="md_blue_A400">#2979FF</color>
+    <color name="md_blue_A700">#2962FF</color>
+
+    <!-- cyan -->
+    <color name="md_cyan_50">#E0F7FA</color>
+    <color name="md_cyan_100">#B2EBF2</color>
+    <color name="md_cyan_200">#80DEEA</color>
+    <color name="md_cyan_300">#4DD0E1</color>
+    <color name="md_cyan_400">#26C6DA</color>
+    <color name="md_cyan_500">#00BCD4</color>
     <color name="md_cyan_600">#00ACC1</color>
+    <color name="md_cyan_700">#0097A7</color>
+    <color name="md_cyan_800">#00838F</color>
+    <color name="md_cyan_900">#006064</color>
+    <color name="md_cyan_A100">#84FFFF</color>
+    <color name="md_cyan_A200">#18FFFF</color>
+    <color name="md_cyan_A400">#00E5FF</color>
+    <color name="md_cyan_A700">#00B8D4</color>
+
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.java_database_advance.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /*
@@ -42,5 +43,12 @@ public class DatabaseManager {
         if (insertCheck > 0){
             return  true;
         }return  false;
+    }
+
+    public Cursor getProductData(){
+        open();
+        String selectQuery = "SELECT " + DatabaseHelper.preClause + " FROM " + DatabaseHelper.TABLE_NAME + " " + DatabaseHelper.whereClause + " " + DatabaseHelper.orderBy + "ID DESC";
+        Cursor cursor =database.rawQuery(selectQuery,null);
+        return  cursor;
     }
 }
