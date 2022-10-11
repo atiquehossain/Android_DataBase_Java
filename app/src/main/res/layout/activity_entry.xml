@@ -342,7 +342,7 @@
         android:elevation="8dp"
         android:translationZ="4dp"
         android:onClick="addOrUpdateMaster"
-
+        android:src="@drawable/add_task"
         app:backgroundTint="@color/colorPrimary"
         app:fabSize="normal"
         android:layout_gravity="end|bottom"

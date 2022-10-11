@@ -16,7 +16,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        addBtn = findViewById(R.id.mSaveMaster);
+        addBtn = findViewById(R.id.add_new);
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
