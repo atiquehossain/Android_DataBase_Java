@@ -14,14 +14,11 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList date_id, total_id, Product_id, cost_id;
+    private ArrayList <CostOfProduct> arrCostOfProducts;
 
-    public MyAdapter(Context context, ArrayList date_id, ArrayList total_id, ArrayList product_id, ArrayList cost_id) {
+    public MyAdapter(Context context, ArrayList<CostOfProduct> arrCostOfProducts) {
         this.context = context;
-        this.date_id = date_id;
-        this.total_id = total_id;
-        Product_id = product_id;
-        this.cost_id = cost_id;
+        this.arrCostOfProducts = arrCostOfProducts;
     }
 
     @NonNull
@@ -33,15 +30,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.total_id.setText(String.valueOf(total_id.get(position)));
-        holder.cost_id.setText(String.valueOf(cost_id.get(position)));
-        holder.date_id.setText(String.valueOf(date_id.get(position)));
+        holder.total_id.setText(String.valueOf(arrCostOfProducts.get(position).total));
+        holder.cost_id.setText(String.valueOf(arrCostOfProducts.get(position).Cost));
+        holder.date_id.setText(arrCostOfProducts.get(position).date);
+
 
     }
 
     @Override
     public int getItemCount() {
-        return cost_id.size();
+        return arrCostOfProducts.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -4,19 +4,25 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.example.java_database_advance.CostOfProduct;
+
+import java.util.ArrayList;
 
 /*
  *** DB Operation ****
  */
 public class DatabaseManager {
     private Context context;
-    private  DatabaseHelper databaseHelper;
+    private DatabaseHelper databaseHelper;
     private SQLiteDatabase database;
 
-    public  DatabaseManager(Context context) {
-       this.context = context;
-       databaseHelper = new DatabaseHelper(context);
+    public DatabaseManager(Context context) {
+        this.context = context;
+        databaseHelper = new DatabaseHelper(context);
     }
+
     private void open() {
         database = databaseHelper.getWritableDatabase();
         database.beginTransaction();
@@ -29,29 +35,45 @@ public class DatabaseManager {
         databaseHelper.close();
     }
 
-    public boolean insertProductData(String date,int total, String name, int cost){
+    public boolean insertProductData(String date, int total, String name, int cost) {
 
         open();
-        ContentValues contentValues =new ContentValues();
-        contentValues.put(DatabaseHelper.date ,date);
-        contentValues.put(DatabaseHelper.total ,total);
-        contentValues.put(DatabaseHelper.product ,name);
-        contentValues.put(DatabaseHelper.productCost ,cost);
-        long  insertCheck = database.insert(DatabaseHelper.TABLE_NAME , null,contentValues);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.date, date);
+        contentValues.put(DatabaseHelper.total, total);
+        contentValues.put(DatabaseHelper.product, name);
+        contentValues.put(DatabaseHelper.productCost, cost);
+        long insertCheck = database.insert(DatabaseHelper.TABLE_NAME_COST_INFO, null, contentValues);
 
         close();
-        if (insertCheck > 0){
-            return  true;
+        if (insertCheck > 0) {
+            return true;
         } else
-            return  false;
+            return false;
     }
 
-    public Cursor getProductData(){
+    public ArrayList<CostOfProduct> getProductData() {
         open();
-        String selectQuery = "SELECT " + DatabaseHelper.preClause + " FROM " + DatabaseHelper.TABLE_NAME + " " + DatabaseHelper.whereClause + " " + DatabaseHelper.orderBy + "ID DESC";
-        Cursor cursor =database.rawQuery(selectQuery,null);
+        ArrayList<CostOfProduct> modelList = new ArrayList<>();
+        String selectQuery = "SELECT " + DatabaseHelper.preClause + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC";
+        Cursor cursor = database.rawQuery(selectQuery, null);
 
-        return  cursor;
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                CostOfProduct costOfProduct = new CostOfProduct();
+                Log.d("dbError", "getProductData: "+cursor.getColumnIndexOrThrow(DatabaseHelper.productCost));
+                costOfProduct.setCost(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.productCost)));
+                costOfProduct.setTotal(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.total)));
+                costOfProduct.setDate(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.date))));
+                costOfProduct.setName(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.product))));
+                modelList.add(costOfProduct);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            close();
+        }
+        return modelList;
 
     }
 }

@@ -10,6 +10,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
+import android.widget.Toast;
 
 import com.example.java_database_advance.database.DatabaseManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,11 +20,13 @@ import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
     FloatingActionButton addBtn;
-    ArrayList<String> arrTotal, arrDate, arrProductName, arrProductCost;
+    ArrayList<CostOfProduct> arrCostOfProducts;
     DatabaseManager databaseManager;
     MyAdapter myAdapter;
     Context context;
     RecyclerView recyclerView;
+
+    static int a = 1 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +35,15 @@ public class ListActivity extends AppCompatActivity {
         addBtn = findViewById(R.id.add_new);
 
         databaseManager = new DatabaseManager(this);
-        arrTotal = new ArrayList<>();
-        arrDate = new ArrayList<>();
-        arrProductCost = new ArrayList<>();
-        arrProductName = new ArrayList<>();
         recyclerView = findViewById(R.id.mRecyclerView);
-        myAdapter = new MyAdapter(this,arrDate,arrTotal,arrProductName,arrProductCost);
-        
-        recyclerView.setAdapter(myAdapter);
+        arrCostOfProducts = new ArrayList<>();
+        myAdapter = new MyAdapter(this, arrCostOfProducts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        
-        displayData();
-
+        recyclerView.setAdapter(myAdapter);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ListActivity.this,EntryActivity.class);
+                Intent intent = new Intent(ListActivity.this, EntryActivity.class);
                 startActivity(intent);
             }
         });
@@ -54,19 +51,19 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void displayData() {
+        Log.d("totalArraySize", "displayData: "+databaseManager.getProductData().size());
+        Log.d("totalArraySize", "displayData: "+databaseManager.getProductData().get(1).getDate());
+        arrCostOfProducts.clear();
+        arrCostOfProducts.addAll(databaseManager.getProductData()) ;
+        myAdapter.notifyDataSetChanged();
 
-        Cursor  cursor =databaseManager.getProductData();
-        if (cursor.getCount() == 0){
-            Log.d("Atique", "displayData: ");
+    }
 
-        }else {
-            while (cursor.moveToNext()){
-                arrDate.add(cursor.getString(0));
-                arrTotal.add(cursor.getString(1));
-                arrProductCost.add(cursor.getString(2));
-                arrProductName.add(cursor.getString(3));
-
-            }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(a==1) {
+            displayData();
         }
     }
 }

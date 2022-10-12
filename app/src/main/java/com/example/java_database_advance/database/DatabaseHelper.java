@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     //TABLE COLUMN DEFINE
-    public static final String TABLE_NAME = "CostInfo";
+    public static final String TABLE_NAME_COST_INFO = "CostInfo";
     public static final String id = "ID";
     public static final String total = "Total";
     public static final String date = "date";
@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String mainClause = " " ;
 
 
-    private final String CREATE_USER_INFO_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
+    private final String CREATE_USER_INFO_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_COST_INFO + "(" +
             id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             total + " INTEGER, " +
             date + " VARCHAR, " +

@@ -2,6 +2,7 @@ package com.example.java_database_advance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,7 +49,7 @@ public class EntryActivity extends AppCompatActivity {
                 boolean databaseCheck = databaseManager.insertProductData(sDate,total,sProductName,cost);
 
                 if(databaseCheck == true){
-                    Log.d("Atique", "Sucess: ");
+                   finish();
                 }else
                     Log.d("Atique", "failed: ");
 
