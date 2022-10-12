@@ -42,13 +42,16 @@ public class DatabaseManager {
         close();
         if (insertCheck > 0){
             return  true;
-        }return  false;
+        } else
+            return  false;
     }
 
     public Cursor getProductData(){
         open();
         String selectQuery = "SELECT " + DatabaseHelper.preClause + " FROM " + DatabaseHelper.TABLE_NAME + " " + DatabaseHelper.whereClause + " " + DatabaseHelper.orderBy + "ID DESC";
         Cursor cursor =database.rawQuery(selectQuery,null);
+
         return  cursor;
+
     }
 }
