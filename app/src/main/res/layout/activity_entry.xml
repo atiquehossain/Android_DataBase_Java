@@ -101,6 +101,7 @@
                                     android:textColorHint="@color/colorAccent"
                                     android:textSize="14sp"
                                     android:hint="@string/hint_date"
+
                                     />
 
                             </LinearLayout>

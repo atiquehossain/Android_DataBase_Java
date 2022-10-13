@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.java_database_advance.database.DatabaseHelper;
 import com.example.java_database_advance.database.DatabaseManager;
@@ -21,6 +22,8 @@ public class EntryActivity extends AppCompatActivity {
     EditText eTotal, eDate, eProductName, eProductCost;
     FloatingActionButton mBtn;
 
+    Integer i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,25 +37,12 @@ public class EntryActivity extends AppCompatActivity {
         eProductName = findViewById(R.id.name);
         eProductCost = findViewById(R.id.Cost);
 
-/*        findViewById(R.id.mSaveMaster).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sTotal = eTotal.getText().toString().trim();
-                sDate = eDate.getText().toString().trim();
-                sProductName = eProductName.getText().toString().trim();
-                sProductCost = eProductCost.getText().toString().trim();
-                total =Integer.parseInt(sTotal);
-                cost =Integer.parseInt(sProductCost);
+        i = databaseManager.getMaxTotal();
+        if(i != null ){
+           ( (TextView)findViewById(R.id.total)).setText(String.valueOf(i));
+            findViewById(R.id.total).setFocusable(false);
+        }
 
-                boolean databaseCheck = databaseManager.insertProductData(sDate,total,sProductName,cost);
-
-                if(databaseCheck == true){
-                   finish();
-                }else
-                    Log.d("Atique", "failed: ");
-
-            }
-        });*/
     }
 
     public void addOrUpdateMaster(View view) {

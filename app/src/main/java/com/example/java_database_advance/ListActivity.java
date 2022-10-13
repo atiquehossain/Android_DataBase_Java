@@ -28,6 +28,7 @@ public class ListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     static int a = 1 ;
+    Integer total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class ListActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(this, arrCostOfProducts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myAdapter);
+
+
 
 
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +58,13 @@ public class ListActivity extends AppCompatActivity {
     private void displayData() {
         arrCostOfProducts.clear();
         arrCostOfProducts.addAll(databaseManager.getProductData()) ;
-        int total = databaseManager.getMaxTotal();
-        TextView Totalvalue = (TextView) findViewById(R.id.totalValue);
-        Totalvalue.setText(total + " ");
+        total = databaseManager.getMaxTotal();
+        if(total != null){
+            ((TextView)findViewById(R.id.totalValue)).setText(total + " ");
+        }else {
+            ((TextView)findViewById(R.id.totalValue)).setText(R.string.no_data_message);
+        }
+
         myAdapter.notifyDataSetChanged();
 
     }

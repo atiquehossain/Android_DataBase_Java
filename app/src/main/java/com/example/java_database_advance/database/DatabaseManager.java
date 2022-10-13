@@ -77,9 +77,9 @@ public class DatabaseManager {
 
     }
 
-    public  int  getMaxTotal(){
+    public  Integer  getMaxTotal(){
         open();
-        int total = 0 ;
+        Integer total = null ;
         String selectQuery = "SELECT " + DatabaseHelper.total + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC LIMIT 1 ";
         Cursor cursor = database.rawQuery(selectQuery, null);
 
