@@ -62,7 +62,6 @@ public class DatabaseManager {
             cursor.moveToFirst();
             for (int i = 0; i < cursor.getCount(); i++) {
                 CostOfProduct costOfProduct = new CostOfProduct();
-                Log.d("dbError", "getProductData: "+cursor.getColumnIndexOrThrow(DatabaseHelper.productCost));
                 costOfProduct.setCost(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.productCost)));
                 costOfProduct.setTotal(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.total)));
                 costOfProduct.setDate(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.date))));
@@ -70,10 +69,32 @@ public class DatabaseManager {
                 modelList.add(costOfProduct);
                 cursor.moveToNext();
             }
-            cursor.close();
-            close();
+
         }
+        cursor.close();
+        close();
         return modelList;
+
+    }
+
+    public  int  getMaxTotal(){
+        open();
+        int total = 0 ;
+        String selectQuery = "SELECT " + DatabaseHelper.total + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC LIMIT 1 ";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                total =cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.total));
+            }
+
+        }
+        cursor.close();
+        close();
+        return  total;
+
 
     }
 }

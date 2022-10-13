@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private final String TAG = getClass().getSimpleName();
     private Context context;
-    private static final String DATABASE_NAME = "COST";
+    private static final String DATABASE_NAME = "COST.db";
     private static final int DATABASE_VERSION = 1;
 
     //TABLE COLUMN DEFINE
@@ -49,7 +49,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_USER_INFO_TABLE);
-        Log.d("Atique", "onCreate: " + CREATE_USER_INFO_TABLE);
 
     }
 
@@ -59,7 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             onCreate(db);
         } catch (Exception e) {
-            Log.d("Atique", "onUpgrade: ");
         }
 
     }

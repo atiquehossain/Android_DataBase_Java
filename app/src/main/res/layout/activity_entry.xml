@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EntryActivity">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -141,7 +144,7 @@
                                     android:focusable="true"
                                     android:imeOptions="actionDone"
                                     android:ellipsize="end"
-                                    android:inputType="textCapWords"
+                                    android:inputType="number"
                                     android:maxLength="250"
                                     android:maxLines="1"
                                     android:paddingLeft="10dp"
@@ -318,8 +321,6 @@
 
                         </LinearLayout>
 
-
-
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -333,6 +334,9 @@
         </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
+
+</ScrollView>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/mSaveMaster"

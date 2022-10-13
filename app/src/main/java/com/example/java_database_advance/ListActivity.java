@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.java_database_advance.database.DatabaseManager;
@@ -33,13 +34,14 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         addBtn = findViewById(R.id.add_new);
-
         databaseManager = new DatabaseManager(this);
         recyclerView = findViewById(R.id.mRecyclerView);
         arrCostOfProducts = new ArrayList<>();
         myAdapter = new MyAdapter(this, arrCostOfProducts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myAdapter);
+
+
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,10 +53,11 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void displayData() {
-        Log.d("totalArraySize", "displayData: "+databaseManager.getProductData().size());
-        Log.d("totalArraySize", "displayData: "+databaseManager.getProductData().get(1).getDate());
         arrCostOfProducts.clear();
         arrCostOfProducts.addAll(databaseManager.getProductData()) ;
+        int total = databaseManager.getMaxTotal();
+        TextView Totalvalue = (TextView) findViewById(R.id.totalValue);
+        Totalvalue.setText(total + " ");
         myAdapter.notifyDataSetChanged();
 
     }

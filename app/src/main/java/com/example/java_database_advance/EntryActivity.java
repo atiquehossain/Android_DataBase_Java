@@ -33,16 +33,14 @@ public class EntryActivity extends AppCompatActivity {
         eDate = findViewById(R.id.date);
         eProductName = findViewById(R.id.name);
         eProductCost = findViewById(R.id.Cost);
-        mBtn = findViewById(R.id.mSaveMaster);
 
-        mBtn.setOnClickListener(new View.OnClickListener() {
+/*        findViewById(R.id.mSaveMaster).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sTotal = eTotal.getText().toString().trim();
                 sDate = eDate.getText().toString().trim();
                 sProductName = eProductName.getText().toString().trim();
                 sProductCost = eProductCost.getText().toString().trim();
-
                 total =Integer.parseInt(sTotal);
                 cost =Integer.parseInt(sProductCost);
 
@@ -54,6 +52,23 @@ public class EntryActivity extends AppCompatActivity {
                     Log.d("Atique", "failed: ");
 
             }
-        });
+        });*/
+    }
+
+    public void addOrUpdateMaster(View view) {
+        sTotal = eTotal.getText().toString().trim();
+        sDate = eDate.getText().toString().trim();
+        sProductName = eProductName.getText().toString().trim();
+        sProductCost = eProductCost.getText().toString().trim();
+        total =Integer.parseInt(sTotal);
+        cost =Integer.parseInt(sProductCost);
+
+        boolean databaseCheck = databaseManager.insertProductData(sDate,total,sProductName,cost);
+
+        if(databaseCheck == true){
+            finish();
+        }else
+            Log.d("Atique", "failed: ");
+
     }
 }
