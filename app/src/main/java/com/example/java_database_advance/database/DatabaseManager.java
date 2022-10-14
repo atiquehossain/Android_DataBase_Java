@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.java_database_advance.CostOfProduct;
 
@@ -17,6 +16,7 @@ public class DatabaseManager {
     private Context context;
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase database;
+    public Integer total, sum = null;
 
     public DatabaseManager(Context context) {
         this.context = context;
@@ -77,24 +77,32 @@ public class DatabaseManager {
 
     }
 
-    public  Integer  getMaxTotal(){
+    public Integer getMaxTotal() {
         open();
-        Integer total = null ;
+
         String selectQuery = "SELECT " + DatabaseHelper.total + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC LIMIT 1 ";
         Cursor cursor = database.rawQuery(selectQuery, null);
-
-
         if (cursor != null && cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            for (int i = 0; i < cursor.getCount(); i++) {
-                total =cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.total));
+            if (cursor.moveToFirst()) {
+                total = cursor.getInt(0);
             }
-
         }
         cursor.close();
         close();
-        return  total;
+        return total;
+    }
 
-
+    public Integer sumOfColumn() {
+        open();
+        String selectQuery = "SELECT " + "SUM(" + DatabaseHelper.productCost + ")" + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC ";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            if (cursor.moveToFirst()) {
+                sum = cursor.getInt(0);
+            }
+        }
+        cursor.close();
+        close();
+        return sum;
     }
 }
