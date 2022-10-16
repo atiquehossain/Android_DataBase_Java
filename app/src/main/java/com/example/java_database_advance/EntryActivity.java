@@ -18,7 +18,7 @@ public class EntryActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     DatabaseManager databaseManager;
     String sTotal, sDate, sProductName, sProductCost;
-    int total,cost;
+    int total, cost;
     EditText eTotal, eDate, eProductName, eProductCost;
     FloatingActionButton mBtn;
 
@@ -38,8 +38,8 @@ public class EntryActivity extends AppCompatActivity {
         eProductCost = findViewById(R.id.Cost);
 
         i = databaseManager.getMaxTotal();
-        if(i != null ){
-           ( (TextView)findViewById(R.id.total)).setText(String.valueOf(i));
+        if (i != null) {
+            ((TextView) findViewById(R.id.total)).setText(String.valueOf(i));
             findViewById(R.id.total).setFocusable(false);
         }
 
@@ -50,14 +50,14 @@ public class EntryActivity extends AppCompatActivity {
         sDate = eDate.getText().toString().trim();
         sProductName = eProductName.getText().toString().trim();
         sProductCost = eProductCost.getText().toString().trim();
-        total =Integer.parseInt(sTotal);
-        cost =Integer.parseInt(sProductCost);
+        total = Integer.parseInt(sTotal);
+        cost = Integer.parseInt(sProductCost);
 
-        boolean databaseCheck = databaseManager.insertProductData(sDate,total,sProductName,cost);
+        boolean databaseCheck = databaseManager.insertProductData(sDate, total, sProductName, cost);
 
-        if(databaseCheck == true){
+        if (databaseCheck == true) {
             finish();
-        }else
+        } else
             Log.d("Atique", "failed: ");
 
     }

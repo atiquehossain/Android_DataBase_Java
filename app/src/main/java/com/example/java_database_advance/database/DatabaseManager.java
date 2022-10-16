@@ -36,7 +36,6 @@ public class DatabaseManager {
     }
 
     public boolean insertProductData(String date, int total, String name, int cost) {
-
         open();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.date, date);
@@ -79,7 +78,6 @@ public class DatabaseManager {
 
     public Integer getMaxTotal() {
         open();
-
         String selectQuery = "SELECT " + DatabaseHelper.total + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC LIMIT 1 ";
         Cursor cursor = database.rawQuery(selectQuery, null);
         if (cursor != null && cursor.getCount() > 0) {

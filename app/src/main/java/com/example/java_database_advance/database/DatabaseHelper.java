@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String orderBy = " ORDER BY  ";
     public static final String preClause = " * ";
     public static final String whereClause = " ";
-    public static final String mainClause = " " ;
+    public static final String mainClause = " ";
 
 
     private final String CREATE_USER_INFO_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_COST_INFO + "(" +

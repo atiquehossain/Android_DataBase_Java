@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList <CostOfProduct> arrCostOfProducts;
+    private ArrayList<CostOfProduct> arrCostOfProducts;
 
     public MyAdapter(Context context, ArrayList<CostOfProduct> arrCostOfProducts) {
         this.context = context;
@@ -24,7 +24,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.adapter_group_register_recycler_view,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.adapter_group_register_recycler_view, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -44,6 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView date_id, total_id, Product_id, cost_id;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             date_id = itemView.findViewById(R.id.date_id);

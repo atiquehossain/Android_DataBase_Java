@@ -87,4 +87,9 @@ public class ListActivity extends AppCompatActivity {
             displayData();
         }
     }
+
+    public void totalBtn(View view) {
+        Intent intent = new Intent(ListActivity.this, TotalBalanceActivity.class);
+        startActivity(intent);
+    }
 }
