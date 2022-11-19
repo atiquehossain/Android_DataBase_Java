@@ -1,5 +1,7 @@
 package com.example.java_database_advance.database;
 
+import static com.example.java_database_advance.database.DatabaseHelper.TABLE_NAME_COST_INFO;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -42,7 +44,7 @@ public class DatabaseManager {
         contentValues.put(DatabaseHelper.total, total);
         contentValues.put(DatabaseHelper.product, name);
         contentValues.put(DatabaseHelper.productCost, cost);
-        long insertCheck = database.insert(DatabaseHelper.TABLE_NAME_COST_INFO, null, contentValues);
+        long insertCheck = database.insert(TABLE_NAME_COST_INFO, null, contentValues);
 
         close();
         if (insertCheck > 0) {
@@ -51,10 +53,16 @@ public class DatabaseManager {
             return false;
     }
 
+    public void deleteAllData(){
+        open();
+        database.execSQL("Delete FROM "+TABLE_NAME_COST_INFO);
+        close();
+    }
+
     public ArrayList<CostOfProduct> getProductData() {
         open();
         ArrayList<CostOfProduct> modelList = new ArrayList<>();
-        String selectQuery = "SELECT " + DatabaseHelper.preClause + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC";
+        String selectQuery = "SELECT " + DatabaseHelper.preClause + " FROM " + TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC";
         Cursor cursor = database.rawQuery(selectQuery, null);
 
         if (cursor != null && cursor.getCount() > 0) {
@@ -63,8 +71,8 @@ public class DatabaseManager {
                 CostOfProduct costOfProduct = new CostOfProduct();
                 costOfProduct.setCost(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.productCost)));
                 costOfProduct.setTotal(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.total)));
-                costOfProduct.setDate(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.date))));
-                costOfProduct.setName(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.product))));
+                costOfProduct.setDate(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.date)));
+                costOfProduct.setName(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.product)));
                 modelList.add(costOfProduct);
                 cursor.moveToNext();
             }
@@ -78,7 +86,7 @@ public class DatabaseManager {
 
     public Integer getMaxTotal() {
         open();
-        String selectQuery = "SELECT " + DatabaseHelper.total + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC LIMIT 1 ";
+        String selectQuery = "SELECT " + DatabaseHelper.total + " FROM " + TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC LIMIT 1 ";
         Cursor cursor = database.rawQuery(selectQuery, null);
         if (cursor != null && cursor.getCount() > 0) {
             if (cursor.moveToFirst()) {
@@ -92,7 +100,7 @@ public class DatabaseManager {
 
     public Integer sumOfColumn() {
         open();
-        String selectQuery = "SELECT " + "SUM(" + DatabaseHelper.productCost + ")" + " FROM " + DatabaseHelper.TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC ";
+        String selectQuery = "SELECT " + "SUM(" + DatabaseHelper.productCost + ")" + " FROM " + TABLE_NAME_COST_INFO + " " + DatabaseHelper.orderBy + "ID DESC ";
         Cursor cursor = database.rawQuery(selectQuery, null);
         if (cursor != null && cursor.getCount() > 0) {
             if (cursor.moveToFirst()) {
@@ -103,4 +111,5 @@ public class DatabaseManager {
         close();
         return sum;
     }
+
 }

@@ -13,6 +13,9 @@
     <string name="total_cost">Cost : </string>
     <string name="balance">Balance</string>
     <string name="clear">Clear all</string>
-
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="not_applicable">Not Applicable</string>
+    <string name="common_warning_title">Attention!</string>
 
 </resources>

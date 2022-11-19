@@ -130,19 +130,11 @@
                                 android:textSize="14sp" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=" :"
-                                android:textColor="@color/md_grey_800"
-                                android:textSize="14sp" />
-
-                            <TextView
                                 android:id="@+id/date_id"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="4dp"
                                 android:ellipsize="end"
-                                android:maxLines="1"
                                 android:tag="Date"
                                 android:text="@string/not_found"
                                 android:textColor="@color/md_black_1000"

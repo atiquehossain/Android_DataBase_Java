@@ -337,7 +337,8 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:translationZ="4dp"
                 app:cardCornerRadius="8dp"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                android:onClick="deleteAllData">
 
                 <!--   Recycler View Item Row   -->
                 <RelativeLayout
