@@ -12,10 +12,15 @@
     <string name="Cost">Cost</string>
     <string name="total_cost">Cost : </string>
     <string name="balance">Balance</string>
-    <string name="clear">Clear all</string>
+    <string name="clear">Remove all</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="not_applicable">Not Applicable</string>
     <string name="common_warning_title">Attention!</string>
+    <string name="update_total">Want to update total amount ?</string>
+    <string name="loading">Loading …</string>
+    <string name="money_sign"> /-</string>
+    <string name="available"> Available</string>
+    <string name="zero"> 00</string>
 
 </resources>

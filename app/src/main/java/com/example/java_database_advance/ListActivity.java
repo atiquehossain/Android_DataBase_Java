@@ -4,22 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.java_database_advance.database.DatabaseHelper;
 import com.example.java_database_advance.database.DatabaseManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.util.ArrayList;
 
@@ -58,11 +50,12 @@ public class ListActivity extends AppCompatActivity {
     private void displayData() {
         arrCostOfProducts.clear();
         arrCostOfProducts.addAll(databaseManager.getProductData());
-        total = databaseManager.getMaxTotal();
+        total = databaseManager.lastTotalBalance();
+       // total = databaseManager.BalanceUpdate();
         if (total != null) {
-            ((TextView) findViewById(R.id.totalValue)).setText(total + " ");
+            ((TextView) findViewById(R.id.available)).setText(total + " ");
         } else {
-            ((TextView) findViewById(R.id.totalValue)).setText(R.string.no_data_message);
+            ((TextView) findViewById(R.id.available)).setText(R.string.no_data_message);
         }
         totalCost = databaseManager.sumOfColumn();
         if (totalCost != null) {
@@ -72,7 +65,7 @@ public class ListActivity extends AppCompatActivity {
         }
         if (total != null && totalCost != null) {
             int v = total - totalCost;
-            ((TextView) findViewById(R.id.balance)).setText(v + " ");
+          //  ((TextView) findViewById(R.id.balance)).setText(v + " ");
 
         }
 

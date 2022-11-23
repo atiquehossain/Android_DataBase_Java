@@ -3,7 +3,6 @@ package com.example.java_database_advance;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +12,8 @@ import android.widget.TextView;
 
 import com.example.java_database_advance.database.DatabaseHelper;
 import com.example.java_database_advance.database.DatabaseManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class EntryActivity extends AppCompatActivity {
 
@@ -43,7 +38,7 @@ public class EntryActivity extends AppCompatActivity {
         eProductName = findViewById(R.id.name);
         eProductCost = findViewById(R.id.Cost);
 
-        i = databaseManager.getMaxTotal();
+        i = databaseManager.lastRemainingBalance();
         if (i != null) {
             ((TextView) findViewById(R.id.total)).setText(String.valueOf(i));
             findViewById(R.id.total).setFocusable(false);

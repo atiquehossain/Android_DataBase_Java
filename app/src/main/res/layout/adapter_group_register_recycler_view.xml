@@ -97,9 +97,9 @@
                                 android:ellipsize="end"
                                 android:inputType="text"
                                 android:maxLines="1"
-                                android:text="@string/total_cost"
+                                android:text="Name : "
                                 android:textColor="@color/md_blue_700"
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -111,8 +111,8 @@
                                 android:maxLines="1"
                                 android:text="@string/not_found"
                                 android:textColor="@color/md_blue_700"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:textSize="14sp"
+                              />
 
                         </LinearLayout>
 

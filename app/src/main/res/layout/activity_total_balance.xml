@@ -27,12 +27,12 @@
         android:layout_marginLeft="6dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="6dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
@@ -43,10 +43,8 @@
                 android:layout_height="200dp"
                 android:layout_margin="4dp"
                 android:background="@color/teal_200"
-                android:clickable="true"
                 android:elevation="5dp"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:onClick="totalBtn"
                 android:translationZ="4dp"
                 app:cardCornerRadius="8dp"
                 app:cardUseCompatPadding="true">
@@ -65,12 +63,13 @@
                         android:orientation="horizontal"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
-                        android:weightSum="8">
+                        android:weightSum="8"
+                        android:id="@+id/total_dashBoard"
+                        android:baselineAligned="false">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="8dp"
                             android:layout_weight="8"
                             android:gravity="center_vertical"
                             android:orientation="vertical"
@@ -88,7 +87,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
-                                    android:inputType="text"
                                     android:text="@string/total"
                                     android:textAlignment="center"
                                     android:textColor="@color/white"
@@ -100,16 +98,16 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
                                 android:layout_marginTop="5dp"
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/balance"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
-                                    android:text="0000"
+                                    android:text="@string/loading"
                                     android:textColor="@color/md_white_1000"
                                     android:textSize="20sp" />
 
@@ -117,9 +115,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:layout_marginLeft="2dp"
                                     android:gravity="center"
-                                    android:text=" /-"
+                                    android:text="@string/money_sign"
                                     android:textColor="@color/md_white_1000"
                                     android:textSize="20sp" />
 
@@ -129,15 +126,61 @@
 
                     </LinearLayout>
 
+
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <!-- Password Label -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="11"
+                app:passwordToggleEnabled="true"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/totalBalanceUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="11"
+                    android:imeOptions="actionDone"
+                    android:scrollHorizontally="true"
+                    android:maxLines="1"
+                    android:drawableStart="@drawable/ic_action_add"
+                    android:hint="@string/update_total"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Login Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/mLoginBtn"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                android:textColor="@color/md_white_1000"
+                android:text="Update"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -150,7 +193,7 @@
         android:onClick="addNewRecord"
         android:src="@drawable/ic_baseline_check_24"
         app:backgroundTint="@color/colorAccent"
-        app:fabSize="normal" />
+        app:fabSize="normal" />-->
 
 
 </RelativeLayout>
